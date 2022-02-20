@@ -6,4 +6,9 @@
   border: 1px solid #fff;
   justify-content: start;
   align-self: center;
+  cursor: pointer;
+}
+
+.profile__edit:hover {
+  opacity: .6;
 }
