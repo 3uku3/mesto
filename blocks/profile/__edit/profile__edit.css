@@ -7,8 +7,16 @@
   justify-content: start;
   align-self: center;
   cursor: pointer;
+  padding: 0;
 }
 
 .profile__edit:hover {
   opacity: .6;
+}
+
+@media (max-width: 600px) {
+  .profile__edit {
+    width: 18px;
+    height: 18px;
+  }
 }
