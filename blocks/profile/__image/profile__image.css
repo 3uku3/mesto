@@ -10,3 +10,8 @@
     margin-left: 27px;
   }
 }
+@media (max-width: 600px) {
+  .profile__image {
+    margin: 0;
+  }
+}

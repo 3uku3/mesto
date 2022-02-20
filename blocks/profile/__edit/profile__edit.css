@@ -1,12 +1,12 @@
 .profile__edit {
   width: 24px;
   height: 24px;
-  margin-top: 5px;
   background: none;
   border: 1px solid #fff;
   justify-content: start;
   align-self: center;
   cursor: pointer;
+  margin-bottom: 15px;
   padding: 0;
 }
 
@@ -16,6 +16,7 @@
 
 @media (max-width: 600px) {
   .profile__edit {
+    margin: 0 0 7px 10px;
     width: 18px;
     height: 18px;
   }
