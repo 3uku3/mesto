@@ -1,3 +1,11 @@
 .profile__cart {
   display: flex;
 }
+
+@media (max-width: 600px) {
+  .profile__cart {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
