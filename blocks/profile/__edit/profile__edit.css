@@ -1,0 +1,8 @@
+.profile__edit {
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: 1px solid #fff;
+  justify-content: start;
+  align-self: center;
+}
