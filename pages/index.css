@@ -23,3 +23,11 @@
 @import url("../blocks/place/__title/place__title.css");
 @import url("../blocks/footer/footer.css");
 @import url("../blocks/footer/__copy/footer__copy.css");
+@import url("../blocks/popup-edit/popup-edit.css");
+@import url("../blocks/popup-edit/__about-me/popup-edit__about-me.css");
+@import url("../blocks/popup-edit/__body/popup-edit__body.css");
+@import url("../blocks/popup-edit/__close-button/popup-edit__close-button.css");
+@import url("../blocks/popup-edit/__name/popup-edit__name.css");
+@import url("../blocks/popup-edit/__save-button/popup-edit__save-button.css");
+@import url("../blocks/popup-edit/__title/popup-edit__title.css");
+@import url("../blocks/popup-edit/__close-image/popup-edit__close-image.css");
