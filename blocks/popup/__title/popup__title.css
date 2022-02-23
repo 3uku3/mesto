@@ -1,16 +1,16 @@
-.popup-edit__title {
+.popup__title {
   font-size: 24px;
   font-weight: 900;
   line-height: 29px;
   color: #000;
-  margin: 0 0 54px;
+  margin: 0 0 41px;
   display: inline-block;
 }
 
 @media (max-width: 600px) {
-  .popup-edit__title {
+  .popup__title {
     font-size: 18px;
     line-height: 22px;
-    margin: 0 0 75px;
+    margin: 0 0 62px;
   }
 }

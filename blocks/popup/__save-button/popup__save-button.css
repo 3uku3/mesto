@@ -1,4 +1,4 @@
-.popup-edit__save-button {
+.popup__save-button {
   background: #000;
   color: #fff;
   font-size: 18px;
@@ -11,12 +11,12 @@
   border-radius: 2px;
 }
 
-.popup-edit__save-button:hover {
+.popup__save-button:hover {
   background: rgba(0, 0, 0, .8);
 }
 
 @media (max-width: 600px) {
-  .popup-edit__save-button {
+  .popup__save-button {
     font-size: 14px;
     line-height: 17px;
   }

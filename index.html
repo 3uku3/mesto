@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Mesto</title>
   <link rel="stylesheet" href="pages/index.css">
 </head>
 
@@ -17,22 +17,23 @@
     <section class="profile content__profile">
       <article class="profile__cart">
         <img class="profile__image" src="images/profile-image.jpg" alt="Фото профиля">
-        <div class="profile__container">
-          <div class="profile__text">
+        <div class="profile__text">
+          <div class="profile__container">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <p class="profile__about-me">Исследователь океана</p>
+            <button class="profile__edit"></button>
           </div>
-          <button class="profile__edit"><img class="profile__edit-image" src="images/edit.svg" alt=""></button>
+          <p class="profile__about-me">Исследователь океана</p>
         </div>
+
       </article>
       <button class="profile__add-button"><img src="images/add.svg" alt="Добавить"></button>
     </section>
-    <section class="places"> 
-       <article class="place places__item">
+    <section class="places">
+      <article class="place places__item">
         <img class="place__image" src="images/karachaevsk.jpg" alt="Карачаевск">
         <div class="place__container">
           <h2 class="place__title">Карачаевск</h2>
-          <button class="place__like-button"><img src="images/like.svg" alt="Лайк"></button>
+          <button class="place__like-button place__like-button_active"></button>
         </div>
       </article>
 
@@ -40,7 +41,7 @@
         <img class="place__image" src="images/elbrus.jpg" alt="Эльбрус">
         <div class="place__container">
           <h2 class="place__title">Гора Эльбрус</h2>
-          <button class="place__like-button"><img src="images/like.svg" alt="Лайк"></button>
+          <button class="place__like-button"></button>
         </div>
       </article>
 
@@ -48,7 +49,7 @@
         <img class="place__image" src="images/dombay.jpg" alt="Домбай">
         <div class="place__container">
           <h2 class="place__title">Домбай</h2>
-          <button class="place__like-button"><img src="images/like.svg" alt="Лайк"></button>
+          <button class="place__like-button"></button>
         </div>
       </article>
 
@@ -56,7 +57,7 @@
         <img class="place__image" src="images/elbrus.jpg" alt="Эльбрус">
         <div class="place__container">
           <h2 class="place__title">Гора Эльбрус</h2>
-          <button class="place__like-button"><img src="images/like.svg" alt="Лайк"></button>
+          <button class="place__like-button"></button>
         </div>
       </article>
 
@@ -64,7 +65,7 @@
         <img class="place__image" src="images/dombay.jpg" alt="Домбай">
         <div class="place__container">
           <h2 class="place__title">Домбай</h2>
-          <button class="place__like-button"><img src="images/like.svg" alt="Лайк"></button>
+          <button class="place__like-button"></button>
         </div>
       </article>
 
@@ -72,7 +73,7 @@
         <img class="place__image" src="images/karachaevsk.jpg" alt="Карачаевск">
         <div class="place__container">
           <h2 class="place__title">Карачаево-Черкессия</h2>
-          <button class="place__like-button"><img src="images/like.svg" alt="Лайк"></button>
+          <button class="place__like-button"></button>
         </div>
       </article>
     </section>
@@ -80,15 +81,16 @@
   <footer class="footer">
     <p class="footer__copy">&copy; 2022 Mesto Russia</p>
   </footer>
-  <div class="popup-edit">
-    <form class="popup-edit__body" action="">
-      <button class="popup-edit__close-button"><img class="popup-edit__close-image" src="images/close.svg" alt="Закрыть"></button>
-      <h2 class="popup-edit__title">Редактировать профиль</h2>
-      <input class="popup-edit__name" type="text">
-      <input class="popup-edit__about-me" type="text">
-      <button class="popup-edit__save-button">Сохранить</button>
+  <div class="popup">
+    <form class="popup__container">
+      <button class="popup__close-button"><img class="popup__close-image" src="images/close.svg" alt="Закрыть"></button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <input class="popup__name" name="name" type="text">
+      <input class="popup__about-me" name="about-me" type="text">
+      <button class="popup__save-button" type="submit" value="Сохранить">Сохранить</button>
     </form>
   </div>
+  <script src="src/main.js"></script>
 </body>
 
 </html>
