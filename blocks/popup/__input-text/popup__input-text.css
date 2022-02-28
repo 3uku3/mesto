@@ -1,5 +1,5 @@
-.popup__name {
-  font-family: 'Inter', sans-serif;
+.popup__input-text {
+  font-family: 'Inter', 'Arial', sans-serif;
   color: #000;
   font-size: 14px;
   font-weight: 400;
@@ -7,5 +7,4 @@
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   padding: 13px 0;
-  margin: 0 0 17px;
 }
