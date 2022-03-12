@@ -29,7 +29,7 @@
       <button class="profile__add-button" type="button"><img src="images/add.svg" alt="Добавить"></button>
     </section>
     <section class="places">
-      <article class="place places__item">
+      <!-- <article class="place places__item">
         <img class="place__image" src="images/karachaevsk.jpg" alt="Карачаевск">
         <div class="place__container">
           <h2 class="place__title">Карачаевск</h2>
@@ -75,14 +75,14 @@
           <h2 class="place__title">Карачаево-Черкессия</h2>
           <button class="place__like-button" type="button"></button>
         </div>
-      </article>
+      </article> -->
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copy">&copy; 2022 Mesto Russia</p>
   </footer>
-  <div class="popup">
-    <form class="popup__container" name="popup">
+  <div class="popup popup_type_form popup-edit">
+    <form class="popup__container popup__container_type_form" name="popup-edit">
       <button class="popup__close-button" type="button"><img class="popup__close-image" src="images/close.svg" alt="Закрыть"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <input class="popup__input-text popup__input-text_type_name" name="name" type="text">
@@ -90,6 +90,34 @@
       <button class="popup__save-button" type="submit" value="Сохранить">Сохранить</button>
     </form>
   </div>
+  <div class="popup popup_type_form popup-add">
+    <form class="popup__container popup__container_type_form" name="popup-add">
+      <button class="popup__close-button" type="button"><img class="popup__close-image" src="images/close.svg" alt="Закрыть"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <input class="popup__input-text popup__input-text_type_name-place" placeholder="Название" name="name-place" type="text">
+      <input class="popup__input-text popup__input-text_type_link" placeholder="Ссылка на картинку" name="link-img" type="text">
+      <button class="popup__save-button" type="submit" value="Создать">Создать</button>
+    </form>
+  </div>
+  <div class="popup popup_type_image">
+    <div class="popup__container popup__container_type_image">
+      <button class="popup__close-button" type="button"><img class="popup__close-image" src="images/close.svg" alt="Закрыть"></button>
+      <figure class="popup__figure">
+        <img class="popup__image" src="" alt="Изображение карточки">
+        <figcaption class="popup__caption"></figcaption>
+      </figure>
+    </div>
+  </div>
+  <template id="place-template">
+    <article class="place places__item">
+      <button class="place__delete"type="button"></button>
+      <img class="place__image" src="">
+      <div class="place__container">
+        <h2 class="place__title"></h2>
+        <button class="place__like-button" type="button"></button>
+      </div>
+    </article>
+  </template>
   <script src="src/main.js"></script>
 </body>
 

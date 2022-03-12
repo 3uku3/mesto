@@ -1,0 +1,11 @@
+.place__delete {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  min-width: 18px;
+  min-height: 19px;
+  background: none;
+  background-image: url(../../../images/trash.svg);
+  border: none;
+  cursor: pointer;
+}

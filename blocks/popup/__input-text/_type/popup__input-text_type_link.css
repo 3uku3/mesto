@@ -1,0 +1,17 @@
+.popup__input-text_type_link {
+  margin: 0 0 48px;
+}
+
+@media (max-width: 600px) {
+  .popup__input-text_type_link {
+    margin: 0 0 45px;
+  }
+}
+
+.popup__input-text_type_link::placeholder {
+  color: #C4C4C4;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+}
