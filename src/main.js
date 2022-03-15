@@ -30,12 +30,10 @@ const addPopup = document.querySelector(".popup-add");
 const imagePopup = document.querySelector(".popup_type_image");
 
 const editButton = document.querySelector(".profile__edit");
-const editSaveButton = editPopup.querySelector(".popup__save-button");
 const editCloseButton = editPopup.querySelector(".popup__close-button");
 const editForm = editPopup.querySelector('.popup__container');
 
 const addButton = document.querySelector(".profile__add-button");
-const addCreateButton = addPopup.querySelector(".popup__save-button");
 const addCloseButton = addPopup.querySelector(".popup__close-button");
 const addForm = addPopup.querySelector('.popup__container');
 
