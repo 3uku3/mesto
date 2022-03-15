@@ -81,6 +81,7 @@ function createCard(item) {
 
   placeImage.addEventListener('click', () => {
     popupImage.src = placeImage.src;
+    popupImage.alt = placeTitle.textContent;
     popupCaption.textContent = placeTitle.textContent;
     openPopup(imagePopup);
   })
@@ -100,11 +101,21 @@ initialCards.forEach((item) => {
 
 editForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
+  name.textContent = popupName.value;
+  aboutMe.textContent = popupAboutMe.value;
+  closePopup(editPopup)
 })
 
 
 addForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
+  popupAddData.name = addPlaceName.value;
+  popupAddData.link = addPlaceLink.value;
+  const placeElement = createCard(popupAddData);
+  addPlaceName.value = '';
+  addPlaceLink.value = '';
+  places.prepend(placeElement);
+  closePopup(addPopup);
 })
 
 editButton.addEventListener('click', () => {
@@ -112,12 +123,6 @@ editButton.addEventListener('click', () => {
   popupAboutMe.value = aboutMe.textContent;
   openPopup(editPopup);
 })
-
-editSaveButton.addEventListener('click', () => {
-  name.textContent = popupName.value;
-  aboutMe.textContent = popupAboutMe.value;
-  closePopup(editPopup)
-});
 
 editCloseButton.addEventListener('click', () => {
   closePopup(editPopup)
@@ -128,16 +133,6 @@ addButton.addEventListener('click', () => {
 })
 
 addCloseButton.addEventListener('click', () => {
-  closePopup(addPopup);
-})
-
-addCreateButton.addEventListener('click', () => {
-  popupAddData.name = addPlaceName.value;
-  popupAddData.link = addPlaceLink.value;
-  const placeElement = createCard(popupAddData);
-  addPlaceName.value = '';
-  addPlaceLink.value = '';
-  places.prepend(placeElement);
   closePopup(addPopup);
 })
 
