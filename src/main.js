@@ -24,20 +24,16 @@ const initialCards = [{
   }
 ];
 
-
+const popupsList = Array.from(document.querySelectorAll(".popup"));
 const editPopup = document.querySelector(".popup-edit");
 const addPopup = document.querySelector(".popup-add");
 const imagePopup = document.querySelector(".popup_type_image");
 
 const editButton = document.querySelector(".profile__edit");
-const editCloseButton = editPopup.querySelector(".popup__close-button");
 const editForm = editPopup.querySelector('.popup__container');
 
 const addButton = document.querySelector(".profile__add-button");
-const addCloseButton = addPopup.querySelector(".popup__close-button");
 const addForm = addPopup.querySelector('.popup__container');
-
-const imageCloseButton = imagePopup.querySelector(".popup__close-button");
 
 const popupImage = imagePopup.querySelector(".popup__image");
 const popupCaption = imagePopup.querySelector(".popup__caption");
@@ -58,19 +54,34 @@ const templatePlace = document.querySelector("#place-template").content.querySel
 const places = document.querySelector(".places");
 
 
-function openPopup(popup) {
-  popup.classList.add('popup__opened');
+const openPopup = (popup) => {
+  popup.classList.add('popup_opened');
 }
 
-function closePopup(popup) {
-  popup.classList.remove("popup__opened");
+const closePopup = (popup) => {
+  popup.classList.remove("popup_opened");
 }
 
-function createCard(item) {
+const closePopupKeydown = (evt) => {
+  if (evt.key === "Escape") {
+    closePopup(document.querySelector(".popup_opened"));
+    document.removeEventListener('keydown', closePopupKeydown);
+  }
+}
+
+const setCloseButtonEvents = (popup) => {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains("popup__close-image") || evt.target == popup){
+      document.removeEventListener('keydown', closePopupKeydown);
+      closePopup(popup);
+    }
+  })
+}
+
+const createCard = (item) => {
   const placeElement = templatePlace.cloneNode(true);
   const placeImage = placeElement.querySelector(".place__image");
   const placeTitle = placeElement.querySelector(".place__title");
-  const placeLike = placeElement.querySelector(".place__like-button");
   const placeDelete = placeElement.querySelector(".place__delete");
 
   placeImage.src = item.link;
@@ -81,10 +92,8 @@ function createCard(item) {
     popupImage.src = placeImage.src;
     popupImage.alt = placeTitle.textContent;
     popupCaption.textContent = placeTitle.textContent;
+    document.addEventListener('keydown', closePopupKeydown);
     openPopup(imagePopup);
-  })
-  placeLike.addEventListener('click', () => {
-    placeLike.classList.toggle("place__like-button_active");
   })
   placeDelete.addEventListener('click', () => {
     placeElement.remove();
@@ -97,43 +106,43 @@ initialCards.forEach((item) => {
   places.append(placeElement);
 })
 
+places.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains("place__like-button")) {
+    evt.target.classList.toggle("place__like-button_active");
+  }
+})
+
 editForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   name.textContent = popupName.value;
   aboutMe.textContent = popupAboutMe.value;
+  document.removeEventListener('keydown', closePopupKeydown);
   closePopup(editPopup)
 })
-
 
 addForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   popupAddData.name = addPlaceName.value;
   popupAddData.link = addPlaceLink.value;
   const placeElement = createCard(popupAddData);
-  addPlaceName.value = '';
-  addPlaceLink.value = '';
+  addForm.reset();
   places.prepend(placeElement);
+  document.removeEventListener('keydown', closePopupKeydown);
   closePopup(addPopup);
 })
 
 editButton.addEventListener('click', () => {
   popupName.value = name.textContent;
   popupAboutMe.value = aboutMe.textContent;
+  document.addEventListener('keydown', closePopupKeydown);
   openPopup(editPopup);
 })
 
-editCloseButton.addEventListener('click', () => {
-  closePopup(editPopup)
+popupsList.forEach((popup) => {
+  setCloseButtonEvents(popup);
 })
 
 addButton.addEventListener('click', () => {
+  document.addEventListener('keydown', closePopupKeydown);
   openPopup(addPopup);
-})
-
-addCloseButton.addEventListener('click', () => {
-  closePopup(addPopup);
-})
-
-imageCloseButton.addEventListener('click', () => {
-  closePopup(imagePopup);
 })

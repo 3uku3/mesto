@@ -1,10 +1,10 @@
 .popup__input-text_type_link {
-  margin: 0 0 48px;
+  margin: 0 0 17px;
 }
 
 @media (max-width: 600px) {
   .popup__input-text_type_link {
-    margin: 0 0 45px;
+    margin: 0 0 17px;
   }
 }
 
