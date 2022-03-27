@@ -55,10 +55,12 @@ const places = document.querySelector(".places");
 
 
 const openPopup = (popup) => {
+  document.addEventListener('keydown', closePopupKeydown);
   popup.classList.add('popup_opened');
 }
 
 const closePopup = (popup) => {
+  document.removeEventListener('keydown', closePopupKeydown);
   popup.classList.remove("popup_opened");
 }
 
@@ -71,8 +73,7 @@ const closePopupKeydown = (evt) => {
 
 const setCloseButtonEvents = (popup) => {
   popup.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains("popup__close-image") || evt.target == popup){
-      document.removeEventListener('keydown', closePopupKeydown);
+    if (evt.target.classList.contains("popup__close-image") || evt.target == popup) {
       closePopup(popup);
     }
   })
@@ -92,7 +93,6 @@ const createCard = (item) => {
     popupImage.src = placeImage.src;
     popupImage.alt = placeTitle.textContent;
     popupCaption.textContent = placeTitle.textContent;
-    document.addEventListener('keydown', closePopupKeydown);
     openPopup(imagePopup);
   })
   placeDelete.addEventListener('click', () => {
@@ -116,7 +116,6 @@ editForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   name.textContent = popupName.value;
   aboutMe.textContent = popupAboutMe.value;
-  document.removeEventListener('keydown', closePopupKeydown);
   closePopup(editPopup)
 })
 
@@ -127,14 +126,12 @@ addForm.addEventListener('submit', (evt) => {
   const placeElement = createCard(popupAddData);
   addForm.reset();
   places.prepend(placeElement);
-  document.removeEventListener('keydown', closePopupKeydown);
   closePopup(addPopup);
 })
 
 editButton.addEventListener('click', () => {
   popupName.value = name.textContent;
   popupAboutMe.value = aboutMe.textContent;
-  document.addEventListener('keydown', closePopupKeydown);
   openPopup(editPopup);
 })
 
@@ -143,6 +140,5 @@ popupsList.forEach((popup) => {
 })
 
 addButton.addEventListener('click', () => {
-  document.addEventListener('keydown', closePopupKeydown);
   openPopup(addPopup);
 })

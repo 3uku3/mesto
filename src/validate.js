@@ -10,7 +10,7 @@ const settings = {
 const showInputError = (inputErrorClass, errorClass, formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.popup__input-error_type_${inputElement.id}`);
   inputElement.classList.add(inputErrorClass);
-  errorElement.textContent = errorMessage;
+  errorElement.textContent = inputElement.value.length === 0 ? "Вы пропустили это поле." : errorMessage;
   errorElement.classList.add(errorClass);
 };
 
@@ -21,6 +21,12 @@ const hideInputError = (inputErrorClass, errorClass, formElement, inputElement) 
   errorElement.textContent = '';
 };
 
+const hasEmptyInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.value.length;
+  })
+}
+
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
@@ -28,15 +34,17 @@ const hasInvalidInput = (inputList) => {
 }
 
 const toggleButtonState = (inactiveButtonClass, inputList, buttonElement) => {
-  if(hasInvalidInput(inputList)) {
+  if(hasInvalidInput(inputList) || hasEmptyInput(inputList)) {
     buttonElement.classList.add(inactiveButtonClass);
+    buttonElement.disabled = true;
   } else {
     buttonElement.classList.remove(inactiveButtonClass);
+    buttonElement.disabled = false;
   }
 }
 
 const checkInputValidity = (inputErrorClass, errorClass, formElement, inputElement) => {
-  if (!inputElement.validity.valid) {
+  if (!inputElement.validity.valid || inputElement.value.length === 0) {
     showInputError(inputErrorClass, errorClass, formElement, inputElement, inputElement.validationMessage);
   } else {
     hideInputError(inputErrorClass, errorClass, formElement, inputElement);
