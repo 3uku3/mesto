@@ -75,6 +75,8 @@ const closePopupKeydown = (evt) => {
 const setCloseButtonEvents = (popup) => {
   popup.addEventListener('click', (evt) => {
     if (evt.target.classList.contains("popup__close-image") || evt.target == popup) {
+      
+      hideErrors(settings.inputErrorClass, settings.errorClass, settings.inputSelector, popup);
       closePopup(popup);
     }
   })

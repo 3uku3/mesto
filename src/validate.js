@@ -21,6 +21,13 @@ const hideInputError = (inputErrorClass, errorClass, formElement, inputElement) 
   errorElement.textContent = '';
 };
 
+const hideErrors = (inputErrorClass, errorClass, inputSelector, formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll(inputSelector));
+  inputList.forEach((inputElement) => {
+    hideInputError(inputErrorClass, errorClass, formElement, inputElement);
+  })
+}
+
 const hasEmptyInput = (inputList) => {
   return inputList.some((inputElement) => {
     return !inputElement.value.length;
