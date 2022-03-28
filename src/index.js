@@ -31,9 +31,11 @@ const imagePopup = document.querySelector(".popup_type_image");
 
 const editButton = document.querySelector(".profile__edit");
 const editForm = editPopup.querySelector('.popup__container');
+const editSaveButton = editPopup.querySelector(".popup__save-button");
 
 const addButton = document.querySelector(".profile__add-button");
 const addForm = addPopup.querySelector('.popup__container');
+const addSaveButton = addPopup.querySelector(".popup__save-button")
 
 const popupImage = imagePopup.querySelector(".popup__image");
 const popupCaption = imagePopup.querySelector(".popup__caption");
@@ -67,7 +69,6 @@ const closePopup = (popup) => {
 const closePopupKeydown = (evt) => {
   if (evt.key === "Escape") {
     closePopup(document.querySelector(".popup_opened"));
-    document.removeEventListener('keydown', closePopupKeydown);
   }
 }
 
@@ -132,6 +133,7 @@ addForm.addEventListener('submit', (evt) => {
 editButton.addEventListener('click', () => {
   popupName.value = name.textContent;
   popupAboutMe.value = aboutMe.textContent;
+  enableButton(settings.inactiveButtonClass, editSaveButton);
   openPopup(editPopup);
 })
 
@@ -140,5 +142,6 @@ popupsList.forEach((popup) => {
 })
 
 addButton.addEventListener('click', () => {
+  disableButton(settings.inactiveButtonClass, addSaveButton);
   openPopup(addPopup);
 })
