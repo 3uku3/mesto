@@ -126,7 +126,6 @@ addForm.addEventListener('submit', (evt) => {
   popupAddData.name = addPlaceName.value;
   popupAddData.link = addPlaceLink.value;
   const placeElement = createCard(popupAddData);
-  addForm.reset();
   places.prepend(placeElement);
   closePopup(addPopup);
 })
@@ -143,6 +142,7 @@ popupsList.forEach((popup) => {
 })
 
 addButton.addEventListener('click', () => {
+  addForm.reset();
   disableButton(settings.inactiveButtonClass, addSaveButton);
   openPopup(addPopup);
 })
