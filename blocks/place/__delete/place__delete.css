@@ -9,3 +9,7 @@
   border: none;
   cursor: pointer;
 }
+
+.place__delete:hover {
+  opacity: .6;
+}

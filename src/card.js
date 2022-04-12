@@ -1,3 +1,5 @@
+import { popupImage, openPopup } from "./index.js";
+
 export class Card {
   constructor(data, templateSelector) {
     this._image = data.link;
@@ -12,47 +14,42 @@ export class Card {
       .firstElementChild
       .cloneNode(true);
   }
-  
-  _setData(cardFields) {
-    cardFields.image.src = this._image;
-    cardFields.image.alt = this._title;
-    cardFields.title.textContent = this._title;
-  }
 
-  _setEventImage(image, popupImage, openPopup) {
-    image.addEventListener('click', () => {
+  _setEventListeners() {
+    this._imageElement.addEventListener('click', () => {
       popupImage.image.src = this._image;
       popupImage.image.alt = this._title;
       popupImage.caption.textContent = this._title;
       openPopup(popupImage.popup);
     })
-  }
 
-  _setEventDelete(card, deleteButton) {
-    deleteButton.addEventListener('click', () => {
-      card.remove();
+    this._buttonLike.addEventListener('click', () => {
+      this._buttonLike.classList.toggle("place__like-button_active");
+    })
+
+    this._buttonDelete.addEventListener('click', () => {
+      this._card.remove();
     })
   }
 
-  _setEventListeners(image, popupImage, openPopup, card, deleteButton) {
-    this._setEventImage(image, popupImage, openPopup);
-    this._setEventDelete(card, deleteButton);
-  }
-
   _createCard(popupImage, openPopup) {
-    const card = this._cloneCard();
+    this._card = this._cloneCard();
     
-    const image = card.querySelector(".place__image");
-    const title = card.querySelector(".place__title");
-    const deleteButton = card.querySelector(".place__delete");
-    this._setData({image, title});
-    this._setEventListeners(image, popupImage, openPopup, card, deleteButton);
-    this._card = card;
+    this._imageElement = this._card.querySelector(".place__image");
+    this._titleElement = this._card.querySelector(".place__title");
+    this._buttonDelete = this._card.querySelector(".place__delete");
+    this._buttonLike = this._card.querySelector(".place__like-button");
+    
+    this._imageElement.src = this._image;
+    this._imageElement.alt = this._title;
+    this._titleElement.textContent = this._title;
+
+    this._setEventListeners();
   }
 
-  getCard(popupImage, openPopup) {
+  getCard() {
     if (!this._card) {
-      this._createCard(popupImage, openPopup);
+      this._createCard();
     }
     return this._card;
   }
