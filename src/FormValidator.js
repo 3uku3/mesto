@@ -74,10 +74,6 @@ export class FormValidator {
     })
   }
 
-  compareForm(form) {
-    return this._formElement === form;
-  }
-
   enableValidation() {
     this._setEventListeners();
   }

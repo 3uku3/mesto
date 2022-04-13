@@ -1,4 +1,4 @@
-import { popupImage, openPopup } from "./index.js";
+import { openPopup, popupImage } from "./utils.js";
 
 export class Card {
   constructor(data, templateSelector) {
@@ -29,6 +29,7 @@ export class Card {
 
     this._buttonDelete.addEventListener('click', () => {
       this._card.remove();
+      this._card = null;
     })
   }
 

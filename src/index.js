@@ -1,7 +1,7 @@
-import { FormValidator } from "./validate.js";
-import { Card } from "./card.js";
+import { FormValidator } from "./FormValidator.js";
+import { Card } from "./Card.js";
 import { initialCards } from "./initialCards.js";
-
+import { openPopup, closePopup } from "./utils.js";
 
 const settings = {
   formSelector: '.popup_type_form',
@@ -28,14 +28,6 @@ const linkInput = popupAddCard.querySelector(".popup__input-text_type_link");
 const formAddValidator = new FormValidator(settings, formAdd);
 const formEditValidator = new FormValidator(settings, formEdit);
 
-const formValidators = [formAddValidator, formEditValidator];
-
-export const popupImage = {
-  popup: document.querySelector(".popup_type_image"),
-  image: document.querySelector(".popup__image"),
-  caption: document.querySelector(".popup__caption")
-}
-
 const profileName = document.querySelector(".profile__name");
 const profileAboutMe = document.querySelector(".profile__about-me");
 const popupName = popupEditProfile.querySelector(".popup__input-text_type_name");
@@ -43,36 +35,9 @@ const popupAboutMe = popupEditProfile.querySelector(".popup__input-text_type_abo
 
 const places = document.querySelector(".places");
 
-export const openPopup = (popup) => {
-  document.addEventListener('keydown', closePopupKeydown);
-  popup.classList.add('popup_opened');
-}
-
-const closePopup = (popup) => {
-  document.removeEventListener('keydown', closePopupKeydown);
-  popup.classList.remove("popup_opened");
-}
-
-const closePopupKeydown = (evt) => {
-  if (evt.key === "Escape") {
-    const popup = document.querySelector(".popup_opened")
-    formValidators.forEach((formValidator) => {
-      if (formValidator.compareForm(popup.firstElementChild)) {
-        formValidator.hideErrors();
-      }
-    })
-    closePopup(popup);
-  }
-}
-
 const setCloseButtonEvents = (popup) => {
   popup.addEventListener('click', (evt) => {
     if (evt.target.classList.contains("popup__close-image") || evt.target == popup) {
-      formValidators.forEach((formValidator) => {
-        if (formValidator.compareForm(popup.firstElementChild)) {
-          formValidator.hideErrors();
-        }
-      })
       closePopup(popup);
     }
   })
@@ -83,9 +48,8 @@ initialCards.forEach((item) => {
   places.append(card.getCard());
 })
 
-formValidators.forEach((formValidator) => {
-  formValidator.enableValidation();
-})
+formAddValidator.enableValidation();
+formEditValidator.enableValidation();
 
 formEdit.addEventListener('submit', (evt) => {
   evt.preventDefault();
@@ -109,6 +73,7 @@ buttonEdit.addEventListener('click', () => {
   popupName.value = profileName.textContent;
   popupAboutMe.value = profileAboutMe.textContent;
   formEditValidator.enableButton();
+  formEditValidator.hideErrors();
   openPopup(popupEditProfile);
 })
 
@@ -119,5 +84,6 @@ popupsList.forEach((popup) => {
 buttonAdd.addEventListener('click', () => {
   formAdd.reset();
   formAddValidator.disableButton();
+  formAddValidator.hideErrors();
   openPopup(popupAddCard);
 })
