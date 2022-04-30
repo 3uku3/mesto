@@ -1,9 +1,8 @@
-import { openPopup, popupImage } from "./utils.js";
-
-export class Card {
-  constructor(data, templateSelector) {
+export default class Card {
+  constructor({data, handleCardClick}, templateSelector) {
     this._image = data.link;
     this._title = data.name;
+    this._handleCardClick = handleCardClick;
     this._templateSelector = templateSelector;
   }
 
@@ -16,12 +15,7 @@ export class Card {
   }
 
   _setEventListeners() {
-    this._imageElement.addEventListener('click', () => {
-      popupImage.image.src = this._image;
-      popupImage.image.alt = this._title;
-      popupImage.caption.textContent = this._title;
-      openPopup(popupImage.popup);
-    })
+    this._imageElement.addEventListener('click', this._handleCardClick);
 
     this._buttonLike.addEventListener('click', () => {
       this._buttonLike.classList.toggle("place__like-button_active");
@@ -33,7 +27,7 @@ export class Card {
     })
   }
 
-  _createCard(popupImage, openPopup) {
+  _createCard() {
     this._card = this._cloneCard();
     
     this._imageElement = this._card.querySelector(".place__image");
