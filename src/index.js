@@ -116,58 +116,5 @@ const section = new Section({
 },settings.containerSelector)
 section.renderItems();
 
-
-
-
-// const setCloseButtonEvents = (popup) => {
-//   popup.addEventListener('click', (evt) => {
-//     if (evt.target.classList.contains("popup__close-image") || evt.target == popup) {
-//       closePopup(popup);
-//     }
-//   })
-// }
-
-// initialCards.forEach((item) => {
-//   const card = new Card(item, "#place-template");
-//   places.append(card.getCard());
-// })
-
 formAddValidator.enableValidation();
 formEditValidator.enableValidation();
-
-// formEdit.addEventListener('submit', (evt) => {
-//   evt.preventDefault();
-//   profileName.textContent = popupName.value;
-//   profileAboutMe.textContent = popupAboutMe.value;
-//   closePopup(popupEditProfile)
-// })
-
-// formAdd.addEventListener('submit', (evt) => {
-//   evt.preventDefault();
-//   const popupAddData = {
-//     name: namePlaceInput.value,
-//     link: linkInput.value
-//   }
-//   const card = new Card(popupAddData, "#place-template");
-//   places.prepend(card.getCard());
-//   closePopup(popupAddCard);
-// })
-
-// buttonEdit.addEventListener('click', () => {
-//   popupName.value = profileName.textContent;
-//   popupAboutMe.value = profileAboutMe.textContent;
-//   formEditValidator.enableButton();
-//   formEditValidator.hideErrors();
-//   openPopup(popupEditProfile);
-// })
-
-// popupsList.forEach((popup) => {
-//   setCloseButtonEvents(popup);
-// })
-
-// buttonAdd.addEventListener('click', () => {
-//   formAdd.reset();
-//   formAddValidator.disableButton();
-//   formAddValidator.hideErrors();
-//   openPopup(popupAddCard);
-// })
