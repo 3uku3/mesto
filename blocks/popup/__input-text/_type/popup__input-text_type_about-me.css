@@ -1,9 +1,0 @@
-.popup__input-text_type_about-me {
-  margin: 0 0 17px;
-}
-
-@media (max-width: 600px) {
-  .popup__input-text_type_about-me {
-    margin: 0 0 17px;
-  }
-}
