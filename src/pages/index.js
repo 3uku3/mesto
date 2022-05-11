@@ -52,8 +52,8 @@ const popupWithImage = new PopupWithImage(settings.popupImageSelector);
 const popupAdd = new PopupWithForm({
   submitForm: (item) => {
     const card = createCard({
-      name: item.firstValue,
-      link: item.secondValue
+      name: item["name-place"],
+      link: item["link-img"]
       });
     section.addItem(card.getCard());
     popupAdd.close();
@@ -63,8 +63,8 @@ const popupAdd = new PopupWithForm({
 const popupEdit = new PopupWithForm({
   submitForm: (values) => {
     userInfo.setUserInfo({
-      name: values.firstValue,
-      aboutMe: values.secondValue
+      name: values.name,
+      aboutMe: values["about-me"]
     });
     popupEdit.close()
   }
