@@ -33,7 +33,6 @@ const settingsValidatator = {
 const popupEditProfile = document.querySelector(".popup-edit");
 const popupAddCard = document.querySelector(".popup-add");
 const popupEditAvatarImage = document.querySelector(".popup-avatarEdit");
-const popupDeleteCard = document.querySelector(".popup-confirmDelete");
 
 const buttonEdit = document.querySelector(".profile__edit");
 const formEdit = popupEditProfile.querySelector(".popup__container");
