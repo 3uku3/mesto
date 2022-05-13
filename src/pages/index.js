@@ -73,11 +73,15 @@ const userInfo = new UserInfo({
 
 const popupWithImage = new PopupWithImage(settings.popupImageSelector);
 
+const handleError = (err) => {
+  console.log(err);
+}
+
 api.getAllInitData().then((res) => {
   const [user, cards] = res;
   userInfo.setInitialData(user);
   const myId = userInfo.getId();
-
+  
   const createCard = (data) => {
     return new Card(
       {
@@ -96,11 +100,13 @@ api.getAllInitData().then((res) => {
           if (isLiked) {
             api.deleteLike(id).then((res) => {
               card.updateLikeCounter(res.likes);
-            });
+            })
+            .catch(handleError);
           } else {
             api.like(id).then((res) => {
               card.updateLikeCounter(res.likes);
-            });
+            })
+            .catch(handleError);
           }
         },
         myId,
@@ -112,9 +118,12 @@ api.getAllInitData().then((res) => {
   const popupSubmit = new PopupWithSubmit(
     {
       submitForm: (id) => {
-        api.deleteCard(id).finally(() => {
+        api.deleteCard(id).then(() => {
           popupSubmit.close();
-        });
+          popupSubmit.deleteCard();
+        })
+          .catch(handleError)
+          .finally(popupSubmit.resetTextButton);
       },
     },
     settings.popupDeleteSelector
@@ -122,7 +131,7 @@ api.getAllInitData().then((res) => {
 
   const section = new Section(
     {
-      items: cards,
+      items: cards.reverse(),
       renderer: (item) => {
         const card = createCard(item);
         section.addItem(card.getCard());
@@ -138,7 +147,9 @@ api.getAllInitData().then((res) => {
           const card = createCard(res);
           section.addItem(card.getCard());
           popupAdd.close();
-        });
+        })
+          .catch(handleError)
+          .finally(popupAdd.resetTextButton);
       },
     },
     settings.popupAddSelector
@@ -153,7 +164,9 @@ api.getAllInitData().then((res) => {
             about: res.about,
           });
           popupEdit.close();
-        });
+        })
+          .catch(handleError)
+          .finally(popupEdit.resetTextButton);
       },
     },
     settings.popupEditSelector
@@ -164,8 +177,10 @@ api.getAllInitData().then((res) => {
       submitForm: (values) => {
         api.setUserAvatar(values).then((res) => {
           userInfo.setAvatar(res.avatar);
-        });
-        popupEditAvatar.close();
+          popupEditAvatar.close();
+        })
+          .catch(handleError)
+          .finally(popupEditAvatar.resetTextButton);
       },
     },
     settings.popupEditAvatarSelector
@@ -196,7 +211,8 @@ api.getAllInitData().then((res) => {
   popupAdd.setEventListeners();
   popupEdit.setEventListeners();
   popupSubmit.setEventListeners();
-});
+}).catch(handleError);
+
 formAddValidator.enableValidation();
 formEditValidator.enableValidation();
 formEditAvatarValidator.enableValidation();

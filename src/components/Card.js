@@ -23,6 +23,7 @@ export default class Card {
   updateLikeCounter(likes) {
     this._likes = likes;
     this._likesCounter.textContent = this._likes.length;
+    this._buttonLike.classList.toggle("place__like-button_active");
   }
 
   _setEventListeners() {
@@ -30,7 +31,6 @@ export default class Card {
 
     this._buttonLike.addEventListener("click", () => {
       this._handleLikeClick(this.getId(), this._isLiked(), this);
-      this._buttonLike.classList.toggle("place__like-button_active");
     });
 
     this._buttonDelete.addEventListener("click", () => {
