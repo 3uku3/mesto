@@ -15,10 +15,7 @@ export default class Api {
         authorization: this._options.headers.authorization,
       },
     })
-      .then(this._getResponseData)
-      .catch((err) => {
-        console.log(err);
-      });
+      .then(this._getResponseData);
   }
 
   getUser() {
@@ -27,10 +24,7 @@ export default class Api {
         authorization: this._options.headers.authorization,
       },
     })
-      .then(this._getResponseData)
-      .catch((err) => {
-        console.log(err);
-      });
+      .then(this._getResponseData);
   }
   getAllInitData() {
     return Promise.all([this.getUser(), this.getInitialCards()]);
